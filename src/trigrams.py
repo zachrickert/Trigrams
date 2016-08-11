@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import io
-
 from random import choice
 
 """Trigrams can be used to mutate text into new, surreal, forms."""
 
+
 def main(file_source, output_amt=200):
+    """Main takes user input source file & integer for output size, returns a trigram."""
     file_data = get_input(file_source)
     trigram_dict = read_input(file_data)
     current_key = choice(trigram_dict)
@@ -22,7 +23,7 @@ def main(file_source, output_amt=200):
 
 
 def get_input(file_source):
-    """Reads the data from a file."""
+    """Read the data from a file."""
     f = io.open(file_source, encoding='utf-8')
     data = f.read()
     f.close()
@@ -53,10 +54,12 @@ def select_word(my_dict, my_key):
 
 
 def start_of_story(my_tuple):
+    """Begin building the trigram dict."""
     return "{0} {1}".format(my_tuple[0], my_tuple[1])
 
 
 def add_to_story(story, new_word):
+    """Add to the trigram dict."""
     return "{} {}".format(story, new_word)
 
 if __name__ == '__main__':

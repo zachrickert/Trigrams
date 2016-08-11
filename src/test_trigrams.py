@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-import pytest
+
 
 TEST_STRING = 'I wish I may I wish I might'
 TEST_FILE = '../test.txt'
 TEST_DICT = {('I', 'wish'): ["I", "I"],
-    ('wish', 'I'): ["may", "might"],
-    ('may', 'I'): ["wish"],
-    ('I', 'may'): ["I"]}
+             ('wish', 'I'): ["may", "might"],
+             ('may', 'I'): ["wish"],
+             ('I', 'may'): ["I"]}
 TEST_TUPLE = ('may', 'I')
 
 
@@ -33,11 +33,14 @@ def test_select_word():
     from trigrams import select_word
     assert select_word(TEST_DICT, TEST_TUPLE) == 'wish'
 
+
 def test_start_of_story():
+    """Test to see if trigram dict is being built."""
     from trigrams import start_of_story
     assert start_of_story(TEST_TUPLE) == 'may I'
 
+
 def test_add_to_story():
+    """Test to see if trigram dict is being added to."""
     from trigrams import add_to_story
     assert add_to_story(TEST_STRING, 'add') == 'I wish I may I wish I might add'
-
