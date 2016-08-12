@@ -8,17 +8,16 @@ from random import choice
 def main(file_source, output_amt=200):
     file_data = get_input(file_source)
     trigram_dict = create_trigram_dict(file_data)
-    current_phrase = select_random_start(trigram_dict)
-    story = start_of_story(current_phrase)
-    story_count = 2
+    story = select_random_start(trigram_dict)
     while True:
-        if story_count > output_amt or current_phrase not in trigram_dict:
+        current_phrase = (story[-2], story[-1])
+        if len(story) > output_amt or current_phrase not in trigram_dict:
             break
+
         next_word = select_word(trigram_dict, current_phrase)
-        add_to_story(story, next_word)
-        story_count += 1
-        current_phrase = (current_phrase[1], next_word)
-    print(story)
+        story.append(next_word)
+
+    print(formatting(story))
 
 
 def get_input(file_source):
@@ -39,33 +38,25 @@ def create_trigram_dict(raw_data):
             dict_key = data[idx], data[idx + 1]
             dict_value = data[idx + 2]
 
-            if dict_key not in trigram_dict:
-                trigram_dict[dict_key] = []
-
-            trigram_dict[dict_key].append(dict_value)
+            trigram_dict.setdefault(dict_key, []).append(dict_value)
 
     return trigram_dict
 
 
 def select_random_start(my_dict):
     """Return a random key from a dictionary."""
-    for key in my_dict:
-        return key
+    return list(choice(list(my_dict.keys())))
 
 
 def select_word(my_dict, my_key):
-    """Return a value from a dictionary."""
+    """Return a radom value from a dictionary."""
     return choice(my_dict[my_key])
 
 
-def start_of_story(my_tuple):
-    """Change one tuple into a phrase."""
-    return "{0} {1}".format(my_tuple[0], my_tuple[1])
+def formatting(my_list):
+    """Format story by joining the list together with spaces."""
+    return(' '.join(my_list))
 
-
-def add_to_story(story, new_word):
-    """Add a single word onto the end of the story."""
-    return "{} {}".format(story, new_word)
 
 if __name__ == '__main__':
     main('../test.txt')
