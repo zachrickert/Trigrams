@@ -2,6 +2,7 @@
 """Trigrams can be used to mutate text into new, surreal, forms."""
 import io
 from random import choice
+import sys
 
 
 def main(file_source, output_amt=200):
@@ -11,7 +12,7 @@ def main(file_source, output_amt=200):
     story = select_random_start(trigram_dict)
     while True:
         current_phrase = (story[-2], story[-1])
-        if len(story) > output_amt or current_phrase not in trigram_dict:
+        if len(story) >= output_amt or current_phrase not in trigram_dict:
             break
 
         next_word = select_word(trigram_dict, current_phrase)
@@ -23,7 +24,7 @@ def main(file_source, output_amt=200):
 def get_input(file_source):
     """Read data from a file."""
     f = io.open(file_source, encoding='utf-8')
-    data = f.read()
+    data = f.read().rstrip('\n')
     f.close()
     return data
 
@@ -59,4 +60,4 @@ def formatting(my_list):
 
 
 if __name__ == '__main__':
-    main('../test.txt')
+        main(sys.argv[1], int(sys.argv[2]))

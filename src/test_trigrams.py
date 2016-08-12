@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-TEST_STRING = 'I wish I may I wish I might'
-TEST_FILE = '../test.txt'
+TEST_STRING = "I wish I may I wish I might"
+TEST_FILE = 'sample.txt'
 TEST_DICT = {('I', 'wish'): ["I", "I"],
              ('wish', 'I'): ["may", "might"],
              ('may', 'I'): ["wish"],
