@@ -8,6 +8,7 @@ TEST_DICT = {('I', 'wish'): ["I", "I"],
              ('may', 'I'): ["wish"],
              ('I', 'may'): ["I"]}
 TEST_TUPLE = ('may', 'I')
+TEST_LIST = ['I', 'wish', 'I', 'may', 'I', 'wish', 'I', 'might']
 
 
 def test_get_input():
@@ -18,14 +19,14 @@ def test_get_input():
 
 def test_has_dictionary():
     """Test to see if read_imput will return a dictionary."""
-    from trigrams import read_input
-    assert read_input("") == {}
+    from trigrams import create_trigram_dict
+    assert create_trigram_dict("") == {}
 
 
 def test_dictionary_values():
-    """Test to see if read_input will currectly form a dictionary."""
-    from trigrams import read_input
-    assert read_input(TEST_STRING) == TEST_DICT
+    """Test to see if create_trigram_dict will currectly form a dictionary."""
+    from trigrams import create_trigram_dict
+    assert create_trigram_dict(TEST_STRING) == TEST_DICT
 
 
 def test_select_word():
@@ -34,13 +35,13 @@ def test_select_word():
     assert select_word(TEST_DICT, TEST_TUPLE) == 'wish'
 
 
-def test_start_of_story():
-    """Test to see if trigram dict is being built."""
-    from trigrams import start_of_story
-    assert start_of_story(TEST_TUPLE) == 'may I'
+def test_select_random_start():
+    """Test to see if random start returns a key in the dictionary."""
+    from trigrams import select_random_start
+    assert tuple(select_random_start(TEST_DICT)) in TEST_DICT.keys()
 
 
-def test_add_to_story():
-    """Test to see if trigram dict is being added to."""
-    from trigrams import add_to_story
-    assert add_to_story(TEST_STRING, 'add') == 'I wish I may I wish I might add'
+def test_formatting():
+    """Test to see if story is correctly formatted."""
+    from trigrams import formatting
+    assert formatting(TEST_LIST) == TEST_STRING
