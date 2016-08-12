@@ -9,6 +9,14 @@ TEST_DICT = {('I', 'wish'): ["I", "I"],
              ('I', 'may'): ["I"]}
 TEST_TUPLE = ('may', 'I')
 TEST_LIST = ['I', 'wish', 'I', 'may', 'I', 'wish', 'I', 'might']
+TEST_STRING2 = 'first second third first second'
+TEST_LENGTH = 30
+
+
+def test_file_length():
+    """Test to check trigram file length."""
+    from trigrams import main
+    assert len(main(TEST_STRING2, TEST_LENGTH).split()) == TEST_LENGTH
 
 
 def test_get_input():

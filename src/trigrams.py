@@ -5,9 +5,8 @@ from random import choice
 import sys
 
 
-def main(file_source, output_amt=200):
+def main(file_data, output_amt=200):
     """Main takes user input source file & integer for output size, returns a trigram."""
-    file_data = get_input(file_source)
     trigram_dict = create_trigram_dict(file_data)
     story = select_random_start(trigram_dict)
     while True:
@@ -18,7 +17,7 @@ def main(file_source, output_amt=200):
         next_word = select_word(trigram_dict, current_phrase)
         story.append(next_word)
 
-    print(formatting(story))
+    return (formatting(story))
 
 
 def get_input(file_source):
@@ -60,4 +59,5 @@ def formatting(my_list):
 
 
 if __name__ == '__main__':
-        main(sys.argv[1], int(sys.argv[2]))
+        file_data = get_input(sys.argv[1])
+        print(main(file_data, int(sys.argv[2])))
