@@ -56,7 +56,7 @@ def select_word(my_dict, my_key):
 def start_of_story(my_tuple):
     """Begin building the trigram dict."""
     return "{0} {1}".format(my_tuple[0], my_tuple[1])
-
+    # .format(*my_tuple[:2]) <--from morning code reveiw
 
 def add_to_story(story, new_word):
     """Add to the trigram dict."""
